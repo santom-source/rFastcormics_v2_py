@@ -1,0 +1,7 @@
+numpy>=1.24
+scipy>=1.10
+pandas>=1.5
+matplotlib>=3.6
+cobra>=0.29
+gurobipy>=10.0      # needs a licence; skip it and use rf.set_default_solver("highs")
+jupyterlab>=4.0
