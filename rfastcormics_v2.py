@@ -13,7 +13,6 @@ plus the COBRA helpers it calls (findExcRxns, findTransRxns, findRxnsFromMets,
 removeRxns, removeUnusedGenes, changeObjective, optimizeCbModel,
 buildOptProblemFromModel).
 
-Things to remember:
 
 - The core runs on plain numpy / scipy.sparse arrays mirroring the COBRA fields
   (S, lb, ub, c, b, csense, rxns, mets, genes, rules, ...) rather than on cobrapy
@@ -23,13 +22,8 @@ Things to remember:
 - Indices are 0-based here. MATLAB's find / intersect / setdiff / union all return
   sorted vectors, and so do the numpy equivalents used here, so FASTCORE walks the
   search in the same order.
-- `basis` (warm start) is accepted but never reused, same as MATLAB: LP3.m line 38
-  and LP7.m line 49 both reset `basis = []` before the solve, so it is dead code
-  there too.
-- Default solver is gurobipy with COBRA's defaults (FeasibilityTol = OptimalityTol
-  = 1e-6, Method = -1), because the MATLAB reference used Gurobi. A HiGHS backend
-  via scipy.optimize.linprog is there for machines without a licence; FASTCORE
-  picks one vertex out of many optimal ones, so HiGHS drifts by ~1% of reactions.
+
+
 """
 
 from __future__ import annotations
