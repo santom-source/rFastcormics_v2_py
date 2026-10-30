@@ -4,6 +4,9 @@ Port of `rFASTCORMICS for RNA-seq data/rFASTCORMICS_v2/` from
 [sysbiolux/rFASTCORMICS](https://github.com/sysbiolux/rFASTCORMICS), function by function,
 checked against the official `BRCA_example`.
 
+**Author:** Xiangjie (Jay) Song. Developed during a summer internship (July–August 2026) in the
+Systems Biology Group of Prof. Thomas Sauter, University of Luxembourg.
+
 ## Files
 
 | | |
@@ -14,9 +17,7 @@ checked against the official `BRCA_example`.
 | `02_discretization.ipynb` | `discretizeFPKM` vs MATLAB, cell by cell |
 | `03_run_brca_example.ipynb` | the three cases from `tutorialScript.m`, compared with MATLAB's `retainedRxns` |
 | `04_downstream_analysis.ipynb` | FBA / pFBA / FVA / deletions via cobrapy, plus a check against MATLAB's FBA and gene deletion results |
-| `05_pipeGEM_vs_MATLAB_comparison.ipynb` | notes on how pipeGEM's rFASTCORMICS differs from v2 |
 | `extract_brca_data.py`, `run_brca_example.py` | CLI versions of 01 and 03 |
-| `test_rfastcormics.py` | port of `scripts/testrFastcormics.m`, plus a case that triggers the second fastcore run |
 
 ## Setup
 
@@ -31,7 +32,8 @@ Gurobi is the default backend because the MATLAB reference was produced with
 licence is needed. Without one, `rf.set_default_solver("highs")` falls back to
 `scipy.optimize.linprog`.
 
-Run the notebooks in order. `01` looks for `workspaceExample.mat` in `./BRCA_example/`.
+Run the notebooks in order from the repository folder. `01` looks for `workspaceExample.mat` in
+`./BRCA_example/` and writes the extracted inputs to `./data/` (not tracked in git).
 
 ## Usage
 
@@ -112,7 +114,6 @@ On `BRCA_example` (Recon 2.04, 10601 rxns / 5837 mets / 2248 genes, 25 TCGA samp
   match the MATLAB log. Medium is judged sufficient in both, so only one fastcore run.
 - `removeRxns` + `removeUnusedGenes` reproduce `BCRAmodel` exactly (2584 / 2134 / 1290) when
   given MATLAB's own reaction list.
-- `testrFastcormics.m` passes reaction for reaction.
 - FBA on MATLAB's own `BCRAmodel` matches to 8 decimals (50.67169641), and single gene deletion
   reproduces `grRatioBCRA` for all 1108 genes - see notebook 04, section 9, which also documents the
   `strmatch` prefix-matching quirk in COBRA's `singleGeneDeletion.m`.
@@ -125,3 +126,19 @@ HiGHS around 2575 (0.970). The differences are matched pairs - `3DPHBH1`/`3DPHBH
 same way if you change its solver. Compare growth rate and essential genes rather than reaction
 membership (notebook 04, section 9c).
 
+## Citation
+
+If you use this port, please cite the original methods:
+
+- Pacheco, M. P., Bintener, T., Ternes, D., Kulms, D., Haan, S., Letellier, E., & Sauter, T. (2019).
+  Identifying and targeting cancer-specific metabolism with network-based drug target prediction.
+  *EBioMedicine*, 43, 98–106. https://doi.org/10.1016/j.ebiom.2019.04.046
+- Vlassis, N., Pacheco, M. P., & Sauter, T. (2014). Fast reconstruction of compact context-specific
+  metabolic network models. *PLoS Computational Biology*, 10(1), e1003424.
+  https://doi.org/10.1371/journal.pcbi.1003424
+
+## License
+
+The original rFASTCORMICS code is released under the GNU Lesser General Public License v3.0, and
+this port, as a derivative work, is released under the same license (see `LICENSE`).
+`BRCA_example/workspaceExample.mat` comes from the original repository.
