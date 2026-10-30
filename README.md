@@ -125,10 +125,3 @@ HiGHS around 2575 (0.970). The differences are matched pairs - `3DPHBH1`/`3DPHBH
 same way if you change its solver. Compare growth rate and essential genes rather than reaction
 membership (notebook 04, section 9c).
 
-## Not ported
-
-- `fastcc(..., method='nonconvex')` - v2 only uses `'original'`.
-- The `figflag` plotting inside `discretizeFPKM` - notebook 02 redraws the equivalent figures.
-- Models with coupling constraints (`model.C` / `d` / `E`); `buildOptProblemFromModel` only
-  handles the uncoupled case, which is what the BRCA example is.
-- Most of the `arguments` block validation, apart from the checks that actually fire.
