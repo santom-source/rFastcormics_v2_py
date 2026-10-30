@@ -17,9 +17,7 @@ Systems Biology Group of Prof. Thomas Sauter, University of Luxembourg.
 | `02_discretization.ipynb` | `discretizeFPKM` vs MATLAB, cell by cell |
 | `03_run_brca_example.ipynb` | the three cases from `tutorialScript.m`, compared with MATLAB's `retainedRxns` |
 | `04_downstream_analysis.ipynb` | FBA / pFBA / FVA / deletions via cobrapy, plus a check against MATLAB's FBA and gene deletion results |
-| `05_pipeGEM_vs_MATLAB_comparison.ipynb` | notes on how pipeGEM's rFASTCORMICS differs from v2 |
 | `extract_brca_data.py`, `run_brca_example.py` | CLI versions of 01 and 03 |
-| `test_rfastcormics.py` | port of `scripts/testrFastcormics.m`, plus a case that triggers the second fastcore run |
 
 ## Setup
 
@@ -116,7 +114,6 @@ On `BRCA_example` (Recon 2.04, 10601 rxns / 5837 mets / 2248 genes, 25 TCGA samp
   match the MATLAB log. Medium is judged sufficient in both, so only one fastcore run.
 - `removeRxns` + `removeUnusedGenes` reproduce `BCRAmodel` exactly (2584 / 2134 / 1290) when
   given MATLAB's own reaction list.
-- `testrFastcormics.m` passes reaction for reaction.
 - FBA on MATLAB's own `BCRAmodel` matches to 8 decimals (50.67169641), and single gene deletion
   reproduces `grRatioBCRA` for all 1108 genes - see notebook 04, section 9, which also documents the
   `strmatch` prefix-matching quirk in COBRA's `singleGeneDeletion.m`.
